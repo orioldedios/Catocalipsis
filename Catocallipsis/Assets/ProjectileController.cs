@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
-    public float expirationTime = 1f;
+    public float damageAmount = 40f;
+    public float expirationTime = 3f;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,14 @@ public class ProjectileController : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider);
+        }
+        else if (collision.gameObject.CompareTag("Enemy")) {
+            EnemyController enemy = collision.collider.GetComponent<EnemyController>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damageAmount);
+            }
+            Destroy(gameObject);
         }
     }
 }

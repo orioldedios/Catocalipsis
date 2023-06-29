@@ -7,8 +7,8 @@ public class EnemyController : MonoBehaviour
     public float moveSpeed = 5f;
     public float damping = 0.5f;
 
-    public int maxHealth = 100;
-    private int currentHealth;
+    public float maxHealth = 100;
+    private float currentHealth;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -30,7 +30,7 @@ public class EnemyController : MonoBehaviour
         rb.velocity *= (1f - damping * Time.deltaTime);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
 
