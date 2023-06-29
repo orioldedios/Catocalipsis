@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
        public GameObject ProjectilePrefab;
 //       public Transform ProjectileSpawn;
        public float projectileForce = 10f;
+       public float projectileSpawnDistance = 1f;
 
     // Start is called before the first frame update
     void Start() {
@@ -16,24 +17,49 @@ public class PlayerController : MonoBehaviour {
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
-    // Update is called once per frame
-    void Update() {
-        if (Input.GetMouseButtonDown(0)) Shoot();
+    private bool gunCooldown = false;
+public float shootCooldownTime = 0.5f;
+private float shootTimer = 0f;
 
-         float horizontalInput = Input.GetAxis("Horizontal");
-         float verticalInput = Input.GetAxis("Vertical");
-         Vector2 movement = new Vector2(horizontalInput, verticalInput);
-//             rb.MovePosition(rb.position + movement);
-             rb.velocity = movement * moveSpeed;
-
+void Update()
+{
+    // Check if the gun is not on cooldown and the left mouse button is held down
+    if (!gunCooldown && Input.GetMouseButton(0))
+    {
+        Shoot();
     }
 
-    void Shoot() {
-            GameObject projectileObj = Instantiate(ProjectilePrefab, transform.position, Quaternion.identity);
-            Rigidbody2D projectileRb = projectileObj.GetComponent<Rigidbody2D>();
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 shootDirection = mousePosition - (Vector2)transform.position;
-            shootDirection.Normalize();
-            projectileRb.AddForce(shootDirection * projectileForce, ForceMode2D.Impulse);
+    // Update the shoot timer and check if it has reached the cooldown time
+    if (gunCooldown)
+    {
+        shootTimer += Time.deltaTime;
+        if (shootTimer >= shootCooldownTime)
+        {
+            gunCooldown = false;
+            shootTimer = 0f;
+        }
     }
+
+    float horizontalInput = Input.GetAxis("Horizontal");
+    float verticalInput = Input.GetAxis("Vertical");
+    Vector2 movement = new Vector2(horizontalInput, verticalInput);
+    rb.velocity = movement * moveSpeed;
+}
+
+void Shoot()
+{
+    if (!gunCooldown)
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 shootDirection = mousePosition - (Vector2)transform.position;
+        shootDirection.Normalize();
+
+        GameObject projectileObj = Instantiate(ProjectilePrefab, (Vector2)transform.position + (shootDirection * projectileSpawnDistance), Quaternion.identity);
+        Rigidbody2D projectileRb = projectileObj.GetComponent<Rigidbody2D>();
+        projectileRb.AddForce(shootDirection * projectileForce, ForceMode2D.Impulse);
+
+        gunCooldown = true; // Set the gun on cooldown
+    }
+}
+
 }

@@ -174,3 +174,5 @@ MonoBehaviour:
   moveSpeed: 10
   ProjectilePrefab: {fileID: 2204676926726987481, guid: 1399ec3b9bbfd4d5bae56364fa95bab9, type: 3}
   projectileForce: 10
+  projectileSpawnDistance: 0.1
+  shootCooldownTime: 0.5
