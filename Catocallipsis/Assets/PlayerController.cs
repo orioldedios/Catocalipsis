@@ -2,32 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
-    public float moveSpeed = 5f;
+public class PlayerController : MonoBehaviour {
 
-    private Rigidbody2D rb;
+       private Rigidbody2D rb;
+       public float moveSpeed = 5f;
+       public GameObject ProjectilePrefab;
+//       public Transform ProjectileSpawn;
+       public float projectileForce = 10f;
 
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
+    // Start is called before the first frame update
+    void Start() {
+            rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+    // Update is called once per frame
+    void Update() {
+             float horizontalInput = Input.GetAxis("Horizontal");
+             float verticalInput = Input.GetAxis("Vertical");
+             Vector2 movement = new Vector2(horizontalInput, verticalInput) * moveSpeed * Time.deltaTime;
+             rb.MovePosition(rb.position + movement);
+             if (Input.GetMouseButtonDown(0)){Shoot();}
+    }
 
-        Vector2 movement = new Vector2(horizontalInput, verticalInput);
-        movement.Normalize();
-
-        if (movement.magnitude > 0)
-        {
-            rb.velocity = movement * moveSpeed;
-        }
-        else
-        {
-            rb.velocity = Vector2.zero;
-        }
+    void Shoot() {
+            GameObject projectileObj = Instantiate(ProjectilePrefab, transform.position, Quaternion.identity);
+            Rigidbody2D projectileRb = projectileObj.GetComponent<Rigidbody2D>();
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 shootDirection = mousePosition - (Vector2)transform.position;
+            shootDirection.Normalize();
+            projectileRb.AddForce(shootDirection * projectileForce, ForceMode2D.Impulse);
     }
 }
