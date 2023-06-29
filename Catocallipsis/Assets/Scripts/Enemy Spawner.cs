@@ -8,6 +8,10 @@ public class Spawner : MonoBehaviour
     public int x;
     public int y;
     public int i;
+    public int enemies_on_map = 0;
+    public int max_enemies_on_map = 0;
+    public float spawn_velocity = 0.0f;
+
 
     void Start()
     {
@@ -16,30 +20,40 @@ public class Spawner : MonoBehaviour
 
     IEnumerator EnemyDrop()
     {
-        i = Random.Range(1, 4);
-
-        switch (i)
+        while (enemies_on_map < max_enemies_on_map)
         {
-            case 1:
-                x = Random.Range(-10, 10);
-                y = 7;
-                break;
-            case 2:
-                x = -10;
-                y = Random.Range(-6, 6);
-                break;
-            case 3:
-                x = Random.Range(-10, 10);
-                y = -7;
-                break;
-            case 4:
-                x = 10;
-                y = Random.Range(-6, 6);
-                break;
 
+
+            i = Random.Range(1, 5);
+
+            switch (i)
+            {
+                case 1:
+                    x = Random.Range(-10, 10);
+                    y = 7;
+                    break;
+                case 2:
+                    x = -10;
+                    y = Random.Range(-6, 6);
+                    break;
+                case 3:
+                    x = Random.Range(-10, 10);
+                    y = -7;
+                    break;
+                case 4:
+                    x = 10;
+                    y = Random.Range(-6, 6);
+                    break;
+
+            }
+
+            Instantiate(enemy, new Vector3(x, y, 0), Quaternion.identity);
+            yield return new WaitForSeconds(spawn_velocity);
+
+            if(spawn_velocity > 0.5)
+                spawn_velocity -= 0.1f;
+
+            enemies_on_map += 1;
         }
-
-        Instantiate(enemy, new Vector3(x, y, 0),Quaternion.identity);
-        yield return new WaitForSeconds(0.5f);
     }
 }
