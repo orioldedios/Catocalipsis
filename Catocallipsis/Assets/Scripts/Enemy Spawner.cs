@@ -11,42 +11,35 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        
+        StartCoroutine(EnemyDrop());
     }
 
     IEnumerator EnemyDrop()
     {
-        i = Random.Range(1,4);
+        i = Random.Range(1, 4);
 
-        switch(i)
+        switch (i)
         {
-            CASE 1:
-            {
+            case 1:
                 x = Random.Range(-10, 10);
                 y = 7;
-                brake;
-            }
-            CASE 2:
-            {
+                break;
+            case 2:
                 x = -10;
-                y = Random.Range(-6,6);
-                brake;
-            }
-            CASE 3:
-            {
+                y = Random.Range(-6, 6);
+                break;
+            case 3:
                 x = Random.Range(-10, 10);
                 y = -7;
-                brake;
-            }
-            CASE 4:
-            {
+                break;
+            case 4:
                 x = 10;
-                y = Random.Range(-6,6);
-                brake;
-            }
+                y = Random.Range(-6, 6);
+                break;
+
         }
 
-        Instantiate(enemy, new Vector3(x,y,0));
-        yeild return new WaitForSeconds(0.5f);
+        Instantiate(enemy, new Vector3(x, y, 0),Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
     }
 }
