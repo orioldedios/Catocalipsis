@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
 
     public float maxHealth = 100;
     private float currentHealth;
+    public float damageAmount = 3;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -44,5 +45,18 @@ public class EnemyController : MonoBehaviour
     {
         // Add logic for enemy defeat, such as playing an animation, awarding points, or destroying the enemy GameObject.
         Destroy(gameObject);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerController enemy = collision.collider.GetComponent<PlayerController>();
+                        if (enemy != null)
+                        {
+                            enemy.TakeDamage(damageAmount);
+                        }
+                        Destroy(gameObject);
+        }
     }
 }

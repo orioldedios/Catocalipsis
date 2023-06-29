@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour {
 //       public Transform ProjectileSpawn;
        public float projectileForce = 10f;
        public float projectileSpawnDistance = 1f;
+       public float maxHealth = 3;
+       private float currentHealth;
 
     // Start is called before the first frame update
     void Start() {
@@ -40,6 +42,8 @@ void Update()
         }
     }
 
+
+
     float horizontalInput = Input.GetAxis("Horizontal");
     float verticalInput = Input.GetAxis("Vertical");
     Vector2 movement = new Vector2(horizontalInput, verticalInput);
@@ -61,5 +65,20 @@ void Shoot()
         gunCooldown = true; // Set the gun on cooldown
     }
 }
+private void Die()
+    {
+        // Add logic for enemy defeat, such as playing an animation, awarding points, or destroying the enemy GameObject.
+        Destroy(gameObject);
+    }
+
+public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
 
 }
