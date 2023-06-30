@@ -51,3 +51,7 @@ MonoBehaviour:
   enemies_on_map: 0
   max_enemies_on_map: 100
   spawn_velocity: 2
+  enemyPrefabs:
+  - {fileID: 6661984249464517699, guid: 25c097b4c0c44405ba06247efbd25bed, type: 3}
+  - {fileID: 6991597948366693324, guid: aa9ead9c4ab784a2e96a09bb3a253d98, type: 3}
+  - {fileID: 3609956828181797833, guid: 37b877eca6fe944b68b56cc7384643f2, type: 3}

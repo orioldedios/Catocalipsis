@@ -11,6 +11,11 @@ public class Spawner : MonoBehaviour
     public int enemies_on_map = 0;
     public int max_enemies_on_map = 0;
     public float spawn_velocity = 0.0f;
+    public GameObject[] enemyPrefabs;
+
+  
+   
+
 
 
     void Start()
@@ -22,8 +27,6 @@ public class Spawner : MonoBehaviour
     {
         while (enemies_on_map < max_enemies_on_map)
         {
-
-
             i = Random.Range(1, 5);
 
             switch (i)
@@ -47,7 +50,8 @@ public class Spawner : MonoBehaviour
 
             }
 
-            Instantiate(enemy, new Vector3(x, y, 0), Quaternion.identity);
+            GameObject randomEnemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+            Instantiate(randomEnemyPrefab, new Vector3(x, y, 0), Quaternion.identity);
             yield return new WaitForSeconds(spawn_velocity);
 
             if(spawn_velocity > 0.5)

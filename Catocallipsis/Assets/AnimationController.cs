@@ -46,6 +46,10 @@ public class CharacterAnimationController : MonoBehaviour
         // Play the shooting animation if shooting, otherwise play idle animation
         animator.Play(isShooting ? shootingAnimation.name : idleAnimation.name);
 
+        // Flip the sprite if shooting to the left
+        bool flipSprite = (directionIndex < -90 || directionIndex > 90);
+        SetSpriteFlip(flipSprite);
+
         // Print the current animation name
         Debug.Log("Current Animation: " + (isShooting ? shootingAnimation.name : idleAnimation.name));
     }
@@ -74,5 +78,14 @@ public class CharacterAnimationController : MonoBehaviour
             default:
                 return idleAnimation;
         }
+    }
+
+    private void SetSpriteFlip(bool flip)
+    {
+        // Get the current sprite renderer
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Set the sprite flip based on the flip flag
+        spriteRenderer.flipX = flip;
     }
 }

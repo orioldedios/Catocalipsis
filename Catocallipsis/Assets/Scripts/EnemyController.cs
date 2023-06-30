@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     public float damping = 0.5f;
 
     public float maxHealth = 100;
-    private float currentHealth;
+    public float currentHealth;
     public float damageAmount = 1f;
 
     public GameObject scoring = null;
@@ -40,8 +40,8 @@ public class EnemyController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            scoring.GetComponent<Scoring>().score += 1;
             Die();
+            scoring.GetComponent<Scoring>().score += 1;
         }
     }
 
