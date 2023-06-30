@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour
     private float currentHealth;
     public float damageAmount = 1f;
 
+    public GameObject scoring = null;
+
     private Transform player;
     private Rigidbody2D rb;
 
@@ -18,6 +20,7 @@ public class EnemyController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        scoring = GameObject.FindGameObjectWithTag("Scoring");
 
         currentHealth = maxHealth;
     }
@@ -37,6 +40,7 @@ public class EnemyController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            scoring.GetComponent<Scoring>().score += 1;
             Die();
         }
     }
