@@ -10,18 +10,22 @@ public class PlayerController : MonoBehaviour {
 //       public Transform ProjectileSpawn;
        public float projectileForce = 10f;
        public float projectileSpawnDistance = 1f;
-       public float maxHealth = 3;
+       public float maxHealth = 3f;
        private float currentHealth;
+       public float invincibleTime = 1f;
+       private bool invincible = true;
+       private float invincibleTimer = 0f;
 
     // Start is called before the first frame update
     void Start() {
             rb = GetComponent<Rigidbody2D>();
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            currentHealth = maxHealth;
     }
 
     private bool gunCooldown = false;
-public float shootCooldownTime = 0.5f;
-private float shootTimer = 0f;
+    public float shootCooldownTime = 0.5f;
+    private float shootTimer = 0f;
 
 void Update()
 {
@@ -41,6 +45,15 @@ void Update()
             shootTimer = 0f;
         }
     }
+    if (invincible)
+        {
+            invincibleTimer += Time.deltaTime;
+            if (invincibleTimer >= invincibleTime)
+            {
+                invincible = false;
+                invincibleTimer = 0f;
+            }
+        }
 
 
 
@@ -73,12 +86,13 @@ private void Die()
 
 public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-
-        if (currentHealth <= 0)
-        {
-            Die();
+        if (!invincible) {
+            currentHealth -= damage;
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+            invincible = true;
         }
     }
-
 }
