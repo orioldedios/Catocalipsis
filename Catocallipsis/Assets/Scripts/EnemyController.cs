@@ -44,6 +44,7 @@ public class EnemyController : MonoBehaviour
         {
             Die();
             scoring.GetComponent<Scoring>().score += 1;
+            scoring.GetComponent<Scoring>().i += 1;
             spawner.GetComponent<EnemySpawner>().enemies_on_map -= 1;
         }
     }
