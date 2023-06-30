@@ -16,6 +16,7 @@ public class CharacterAnimationController : MonoBehaviour
 
     private Animator animator;
     private Transform playerTransform;
+    private bool isShooting;
 
     private void Start()
     {
@@ -41,17 +42,30 @@ public class CharacterAnimationController : MonoBehaviour
         AnimationClip shootingAnimation = GetShootingAnimationClip(directionIndex);
 
         // Check if shooting animation should play
-        bool isShooting = Input.GetMouseButton(0);
+        isShooting = Input.GetMouseButton(0);
 
-        // Play the shooting animation if shooting, otherwise play idle animation
-        animator.Play(isShooting ? shootingAnimation.name : idleAnimation.name);
+        // Play the shooting animation if shooting, otherwise play idle animation or directional animation
+        if (isShooting)
+        {
+            animator.Play(shootingAnimation.name);
+        }
+        else if (direction.magnitude > 0)
+        {
+            // If not shooting and there's movement, play the directional animation
+            animator.Play(shootingAnimation.name);
+        }
+        else
+        {
+            // If not shooting and no movement, play the idle animation
+            animator.Play(idleAnimation.name);
+        }
 
         // Flip the sprite if shooting to the left
         bool flipSprite = (directionIndex < -90 || directionIndex > 90);
         SetSpriteFlip(flipSprite);
 
         // Print the current animation name
-        Debug.Log("Current Animation: " + (isShooting ? shootingAnimation.name : idleAnimation.name));
+        Debug.Log("Current Animation: " + (isShooting ? shootingAnimation.name : (direction.magnitude > 0 ? shootingAnimation.name : idleAnimation.name)));
     }
 
     private AnimationClip GetShootingAnimationClip(int directionIndex)
