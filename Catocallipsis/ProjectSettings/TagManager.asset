@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Scoring
+  - Spawner
   layers:
   - Default
   - TransparentFX

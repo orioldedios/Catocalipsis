@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     public float damageAmount = 1f;
 
     public GameObject scoring = null;
+    public GameObject spawner = null;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -21,6 +22,7 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         scoring = GameObject.FindGameObjectWithTag("Scoring");
+        spawner = GameObject.FindGameObjectWithTag("Spawner");
 
         currentHealth = maxHealth;
     }
@@ -42,6 +44,7 @@ public class EnemyController : MonoBehaviour
         {
             Die();
             scoring.GetComponent<Scoring>().score += 1;
+            spawner.GetComponent<EnemySpawner>().enemies_on_map -= 1;
         }
     }
 
