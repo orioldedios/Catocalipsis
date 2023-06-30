@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
        public float invincibleTime = 1f;
        private bool invincible = true;
        private float invincibleTimer = 0f;
+//       public Transform heartDisplay;
 
     // Start is called before the first frame update
     void Start() {
@@ -63,6 +64,10 @@ void Update()
     rb.velocity = movement * moveSpeed;
 }
 
+public float GetLifeCount() {
+    return currentHealth;
+}
+
 void Shoot()
 {
     if (!gunCooldown)
@@ -87,7 +92,7 @@ private void Die()
 public void TakeDamage(float damage)
     {
         if (!invincible) {
-            currentHealth -= damage;
+            currentHealth -= 1;
             if (currentHealth <= 0)
             {
                 Die();
