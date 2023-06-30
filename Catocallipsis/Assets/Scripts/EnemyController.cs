@@ -41,6 +41,7 @@ public class EnemyController : MonoBehaviour
         if (currentHealth <= 0)
         {
             scoring.GetComponent<Scoring>().score += 1;
+            scoring.GetComponent<Scoring>().i += 1;
             Die();
         }
     }
