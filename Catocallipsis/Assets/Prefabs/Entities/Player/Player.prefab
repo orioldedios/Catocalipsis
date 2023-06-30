@@ -178,6 +178,8 @@ MonoBehaviour:
   projectileForce: 10
   projectileSpawnDistance: 0.1
   maxHealth: 3
+  currentHealth: 0
+  invincibleTime: 1
   shootCooldownTime: 0.5
 --- !u!95 &8609931897817605171
 Animator:
@@ -212,3 +214,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd9d41c760404d248c37c20ac476a72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idleAnimation: {fileID: 7400000, guid: d99cc6907522243e79ae111f22f0ea53, type: 2}
+  shootingAnimationRight: {fileID: 7400000, guid: ad1b2a33a0fd84090b82b671bb1d2e08, type: 2}
+  shootingAnimationTopRight: {fileID: 7400000, guid: f7da48cf57d8b4361abe0095f7721f1c, type: 2}
+  shootingAnimationUp: {fileID: 7400000, guid: b362694634c244a1683faecba6aab3e9, type: 2}
+  shootingAnimationTopLeft: {fileID: 7400000, guid: f7da48cf57d8b4361abe0095f7721f1c, type: 2}
+  shootingAnimationLeft: {fileID: 7400000, guid: ad1b2a33a0fd84090b82b671bb1d2e08, type: 2}
+  shootingAnimationBottomLeft: {fileID: 7400000, guid: c97744e87939b4746b417440082d6b88, type: 2}
+  shootingAnimationDown: {fileID: 7400000, guid: cab8ead4d303a447fba08ccc86689f96, type: 2}
+  shootingAnimationBottomRight: {fileID: 7400000, guid: c97744e87939b4746b417440082d6b88, type: 2}
