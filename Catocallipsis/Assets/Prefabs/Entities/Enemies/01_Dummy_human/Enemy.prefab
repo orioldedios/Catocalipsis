@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8880558078599901734
 SpriteRenderer:
@@ -173,5 +173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.3
   damping: 0.5
-  maxHealth: 100
+  maxHealth: 20
   damageAmount: 3
+  scoring: {fileID: 0}
