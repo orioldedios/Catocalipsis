@@ -180,6 +180,7 @@ MonoBehaviour:
   maxHealth: 3
   currentHealth: 0
   invincibleTime: 1
+  livesText: {fileID: 2488106180239837951, guid: 516f611ba62714d259156d2bb27692c6, type: 3}
   shootCooldownTime: 0.5
 --- !u!95 &8609931897817605171
 Animator:
