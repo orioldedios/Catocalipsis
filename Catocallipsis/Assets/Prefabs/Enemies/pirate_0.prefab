@@ -195,7 +195,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
   damping: 0.5
-  maxHealth: 160
+  maxHealth: 80
   currentHealth: 0
   damageAmount: 1
   scoring: {fileID: 0}
+  spawner: {fileID: 0}
