@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: -754679475546960658}
   - component: {fileID: -1244792317133332057}
   - component: {fileID: 6931898133750459978}
+  - component: {fileID: 8609931897817605171}
+  - component: {fileID: -3355953777168635922}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -29,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4860745784501042695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 0, g: 0.78116107, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -175,4 +177,38 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 2204676926726987481, guid: 1399ec3b9bbfd4d5bae56364fa95bab9, type: 3}
   projectileForce: 10
   projectileSpawnDistance: 0.1
+  maxHealth: 3
   shootCooldownTime: 0.5
+--- !u!95 &8609931897817605171
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4860745784501042695}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7be455b06197e4d37bb6392bf9db47b8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3355953777168635922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4860745784501042695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd9d41c760404d248c37c20ac476a72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
