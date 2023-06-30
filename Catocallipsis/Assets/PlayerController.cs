@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
        private float maxX = 8f;
        private float minY = -4f;
        private float maxY = 4f;
-       public TextPopper text;
+       public TextPopper livesText;
 
     // Start is called before the first frame update
     void Start() {
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
 
 void Update()
 {
-    text.PopText("Lives: " + currentHealth);
+    livesText.PopText("Lives: " + currentHealth);
     // Check if the gun is not on cooldown and the left mouse button is held down
     if (!gunCooldown && Input.GetMouseButton(0))
     {
@@ -104,7 +104,7 @@ public void TakeDamage(float damage)
             currentHealth -= 1;
             if (currentHealth <= 0)
             {
-                text.PopText("Lives: " + currentHealth);
+                livesText.PopText("Lives: " + currentHealth);
                 Die();
             }
             invincible = true;

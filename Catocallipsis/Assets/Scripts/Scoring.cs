@@ -8,6 +8,7 @@ public class Scoring : MonoBehaviour
     public int score = 0;
     public int i = 0;
     public GameObject player = null;
+    public TextPopper scoreText;
 
     void Start()
     {
@@ -17,11 +18,13 @@ public class Scoring : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        scoreText.PopText("Score: " + score);
         if (i >= 3 ) 
         {
             i = 0;
             boostPlayer();
         }
+
     }
 
     void boostPlayer()
