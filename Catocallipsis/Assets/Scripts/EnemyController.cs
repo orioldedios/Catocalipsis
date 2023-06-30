@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
 
     public float maxHealth = 100;
     private float currentHealth;
-    public float damageAmount = 3;
+    public float damageAmount = 1f;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -51,10 +51,10 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerController enemy = collision.collider.GetComponent<PlayerController>();
-                        if (enemy != null)
+            PlayerController player = collision.collider.GetComponent<PlayerController>();
+                        if (player != null)
                         {
-                            enemy.TakeDamage(damageAmount);
+                            player.TakeDamage(damageAmount);
                         }
                         Destroy(gameObject);
         }
