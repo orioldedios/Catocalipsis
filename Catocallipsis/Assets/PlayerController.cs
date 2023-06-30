@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
        public float projectileForce = 10f;
        public float projectileSpawnDistance = 1f;
        public float maxHealth = 3f;
-       private float currentHealth;
+       public float currentHealth;
        public float invincibleTime = 1f;
        private bool invincible = true;
        private float invincibleTimer = 0f;
