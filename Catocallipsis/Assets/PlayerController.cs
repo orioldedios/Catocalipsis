@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour {
        public float invincibleTime = 1f;
        private bool invincible = true;
        private float invincibleTimer = 0f;
+       private float minX = -8f;
+       private float maxX = 8f;
+       private float minY = -4f;
+       private float maxY = 4f;
 //       public Transform heartDisplay;
 
     // Start is called before the first frame update
@@ -57,11 +61,15 @@ void Update()
         }
 
 
-
     float horizontalInput = Input.GetAxis("Horizontal");
     float verticalInput = Input.GetAxis("Vertical");
     Vector2 movement = new Vector2(horizontalInput, verticalInput);
     rb.velocity = movement * moveSpeed;
+    Vector2 playerPosition = transform.position;
+    float clampedX = Mathf.Clamp(playerPosition.x, minX, maxX);
+    float clampedY = Mathf.Clamp(playerPosition.y, minY, maxY);
+    playerPosition = new Vector2(clampedX, clampedY);
+    transform.position = playerPosition;
 }
 
 public float GetLifeCount() {
